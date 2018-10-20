@@ -1,11 +1,5 @@
 package personal.finances.solid;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-
 /**
  *
  * @author Zegerd
@@ -13,8 +7,11 @@ import java.util.Scanner;
 public class PersonalFinancesSOLID {
     public static void main(String[] args) {
        
+        // Use console
+        DataReader dr = new ConsoleReader();
+        
         PersonalFinances pf = new PersonalFinances();
-        pf.readData();
+        pf.readData(dr);
         pf.calculateInformation();
         pf.printData();
     }

@@ -4,14 +4,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 /**
  *
  * @author Zegerd
  */
 public class PersonalFinances {
-    private Scanner scanner;
     private int todayPurchases;
     private String[] payees;
     private float[] amounts;
@@ -25,7 +23,6 @@ public class PersonalFinances {
     Date today;
     
     public PersonalFinances(){
-        this.scanner = new Scanner(System.in);
         this.todayPurchases = 0;
         
         payeesCount = new HashMap<>();
@@ -37,16 +34,15 @@ public class PersonalFinances {
         today = Calendar.getInstance().getTime();
     }
     
-    public void readData() {
-        System.out.println("How many purchases did you did today?");
-        todayPurchases = this.scanner.nextInt();
+    public void readData(DataReader dr) {
+        todayPurchases = dr.readIntData();
         
         payees = new String[todayPurchases];
         amounts = new float[todayPurchases];
         
         for (int i = 0; i < todayPurchases; i++) {
-            payees[i] = scanner.next();
-            amounts[i] = scanner.nextFloat();
+            payees[i] = dr.readStringData();
+            amounts[i] = dr.readFloatData();
         }
     }
     
