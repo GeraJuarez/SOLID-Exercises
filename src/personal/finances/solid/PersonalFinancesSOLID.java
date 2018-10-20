@@ -10,10 +10,16 @@ public class PersonalFinancesSOLID {
         // Use console
         DataReader dr = new ConsoleReader();
         
+        // Use file
+        // DataReader dr = new ...
+        
+        // Use Pesos
+        Currency currency = new Peso();
+        
         PersonalFinances pf = new PersonalFinances();
         pf.readData(dr);
         pf.calculateInformation();
-        pf.printData();
+        pf.printData(currency);
     }
     
 }

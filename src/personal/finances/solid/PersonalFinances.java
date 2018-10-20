@@ -71,11 +71,18 @@ public class PersonalFinances {
         }
     }
     
-    public void printData() {
+    public void printData(Currency c) {
         System.out.println("Purchases of " + today);
-        System.out.println("Min: " + min);
-        System.out.println("Max: " + max);
-        System.out.println("Avg: " + avg);
+        
+        c.setAmount(min);      
+        System.out.println("Min: " + c.getAmount());
+        
+        c.setAmount(max);
+        System.out.println("Max: " + c.getAmount());
+        
+        c.setAmount(avg);
+        System.out.println("Avg: " + c.getAmount());
+        
         System.out.println("Frequent Payee: " + frequentPayee);
     }
     
