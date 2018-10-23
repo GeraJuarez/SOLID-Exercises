@@ -25,6 +25,9 @@ public class PersonalFinancesSOLID {
         // Output with console
         DataExporter de = new ConsolePrinter();
         
+        // Output with File
+        //DataExporter de = new FilePrinter();
+        
         PersonalFinances pf = new PersonalFinances(report, dr, de, currency);
         pf.start();
     }
