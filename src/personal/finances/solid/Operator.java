@@ -1,5 +1,6 @@
 package personal.finances.solid;
 
+import personal.finances.solid.CurrencyFormats.Currency;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.Map;
 
 /**
  *
+ * @author GeraJuarez
  * @author JOSECARLOS
  */
 public class Operator {
@@ -18,7 +20,7 @@ public class Operator {
         calculatedInfo = new HashMap<>();
     }        
     
-    public Map<String, String> calculateData(Purchase[] purchases) {
+    public Map<String, String> calculateData(Purchase[] purchases, Currency currencyFormat) {
         Date today = Calendar.getInstance().getTime();
         
         float min = this.getMin(purchases);

@@ -1,5 +1,9 @@
-package personal.finances.solid;
+package personal.finances.solid.Exporters;
 
+/**
+ *
+ * @author GeraJuarez
+ */
 public class ConsolePrinter implements DataExporter {
     
     @Override

@@ -1,11 +1,17 @@
 package personal.finances.solid;
 
+import personal.finances.solid.CurrencyFormats.Peso;
+import personal.finances.solid.CurrencyFormats.Currency;
+import personal.finances.solid.Reports.DailyReport;
+import personal.finances.solid.Reports.Report;
+import personal.finances.solid.Exporters.ConsolePrinter;
+import personal.finances.solid.Exporters.DataExporter;
 import personal.finances.solid.readers.FileReader;
 import personal.finances.solid.readers.DataReader;
 
 /**
  *
- * @author Zegerd
+ * @author GeraJuarez
  */
 public class PersonalFinancesSOLID {
     public static void main(String[] args) {

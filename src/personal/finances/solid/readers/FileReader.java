@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Zegerd
+ * @author GeraJuarez
  */
 public class FileReader implements DataReader{
     private Scanner scanner;

@@ -1,8 +1,8 @@
-package personal.finances.solid;
+package personal.finances.solid.CurrencyFormats;
 
 /**
  *
- * @author Zegerd
+ * @author GeraJuarez
  */
 public class Peso implements Currency {
 

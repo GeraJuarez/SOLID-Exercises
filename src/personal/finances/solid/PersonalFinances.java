@@ -1,19 +1,21 @@
 package personal.finances.solid;
 
+import personal.finances.solid.CurrencyFormats.Currency;
+import personal.finances.solid.Reports.Report;
+import personal.finances.solid.Exporters.DataExporter;
 import personal.finances.solid.readers.DataReader;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  *
- * @author Zegerd
+ * @author GeraJuarez
+ * @author JOSECARLOS
  */
 public class PersonalFinances {
-    private Report report;
-    private DataReader dr;
-    private DataExporter de;
-    private Currency currency;    
-    private Operator operator;
+    private final Report report;
+    private final DataReader dr;
+    private final DataExporter de;
+    private final Currency currency;    
+    private final Operator operator;
     
     private Purchase[] purchases;
     
@@ -50,16 +52,10 @@ public class PersonalFinances {
     }
     
     private void calculateInformation() {
-        Date today = Calendar.getInstance().getTime();
-        this.report.feedInfo(this.operator.calculateData(purchases));
-        
-        // send purchase Obj and the formater to calculator and return a dict
-        // send dict to reporter
-        
+        this.report.feedInfo(this.operator.calculateData(purchases, currency));        
     }
     
     private void printData() {
-        // reporter only prinst specified things of the dict
         de.exportData(this.report.getReport());           
     }
     

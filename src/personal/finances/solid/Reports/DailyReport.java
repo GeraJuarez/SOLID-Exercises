@@ -1,8 +1,12 @@
-package personal.finances.solid;
+package personal.finances.solid.Reports;
 
-import java.util.Calendar;
 import java.util.Map;
 
+/**
+ *
+ * @author GeraJuarez
+ * @author JOSECARLOS
+ */
 public class DailyReport implements Report {
     private Map<String, String> data;
 

@@ -1,13 +1,16 @@
-package personal.finances.solid;
+package personal.finances.solid.Exporters;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.FilterWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author GeraJuarez
+ */
 public class FilePrinter implements DataExporter {
 
     @Override

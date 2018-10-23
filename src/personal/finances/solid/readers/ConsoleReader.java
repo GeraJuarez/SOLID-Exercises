@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Zegerd
+ * @author GeraJuarez
  */
 public class ConsoleReader implements DataReader {
     private final Scanner scanner;
