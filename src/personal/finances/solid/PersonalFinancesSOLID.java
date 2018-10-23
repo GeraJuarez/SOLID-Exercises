@@ -14,10 +14,10 @@ public class PersonalFinancesSOLID {
         //DataReader dr = new ConsoleReader();
         
         // Read input with file
-         DataReader dr = new FileReader("data.txt");
+        DataReader dr = new FileReader("data.txt");
         
         // Report
-        
+        Report report = new DailyReport();
         
         // Use Pesos
         Currency currency = new Peso();
@@ -25,11 +25,8 @@ public class PersonalFinancesSOLID {
         // Output with console
         DataExporter de = new ConsolePrinter();
         
-        PersonalFinances pf = new PersonalFinances();
-        pf.readData(dr);
-        pf.calculateInformation();
-        
-        pf.printData(currency, de);
+        PersonalFinances pf = new PersonalFinances(report, dr, de, currency);
+        pf.start();
     }
     
 }

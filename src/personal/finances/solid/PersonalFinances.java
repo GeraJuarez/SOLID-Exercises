@@ -12,6 +12,9 @@ import java.util.Map;
  */
 public class PersonalFinances {
     private Report report;
+    private DataReader dr;
+    private DataExporter de;
+    private Currency currency;
     
     private int todayPurchases;
     private String[] payees;
@@ -25,8 +28,11 @@ public class PersonalFinances {
     String frequentPayee;
     Date today;
     
-    public PersonalFinances(){
-        //this.report = report;
+    public PersonalFinances(Report report,DataReader dr, DataExporter de, Currency c){
+        this.report = report;
+        this.dr = dr;
+        this.de = de;
+        this.currency = c;        
         
         this.todayPurchases = 0;
         
@@ -39,7 +45,13 @@ public class PersonalFinances {
         today = Calendar.getInstance().getTime();
     }
     
-    public void readData(DataReader dr) {
+    public void start() {
+        this.readData();
+        this.calculateInformation();
+        this.printData();
+    }
+    
+    private void readData() {
         todayPurchases = dr.readIntData();
         
         payees = new String[todayPurchases];
@@ -51,7 +63,7 @@ public class PersonalFinances {
         }
     }
     
-    public void calculateInformation() {
+    private void calculateInformation() {
        
         for (int i = 0; i < todayPurchases; i++){
             if (min > amounts[i]){
@@ -76,12 +88,12 @@ public class PersonalFinances {
         }
     }
     
-    public void printData(Currency c, DataExporter de) {
+    private void printData() {
         
         de.exportData("Purchases of " + today);
-        de.exportData("Min: " + c.getAmount(min));
-        de.exportData("Max: " + c.getAmount(max));
-        de.exportData("Avg: " + c.getAmount(avg));
+        de.exportData("Min: " + currency.getAmount(min));
+        de.exportData("Max: " + currency.getAmount(max));
+        de.exportData("Avg: " + currency.getAmount(avg));
         de.exportData("Frequent Payee: " + frequentPayee);            
     }
     
