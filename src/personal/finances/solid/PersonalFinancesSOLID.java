@@ -2,6 +2,7 @@ package personal.finances.solid;
 
 import personal.finances.solid.CurrencyFormats.Peso;
 import personal.finances.solid.CurrencyFormats.Currency;
+import personal.finances.solid.CurrencyFormats.Yen;
 import personal.finances.solid.Reports.DailyReport;
 import personal.finances.solid.Reports.Report;
 import personal.finances.solid.Exporters.ConsolePrinter;
@@ -12,6 +13,7 @@ import personal.finances.solid.readers.DataReader;
 /**
  *
  * @author GeraJuarez
+ * @author JOSECARLOS
  */
 public class PersonalFinancesSOLID {
     public static void main(String[] args) {
@@ -32,8 +34,10 @@ public class PersonalFinancesSOLID {
         // Operations
         Operator op = new Operator();
         
-        // Use Pesos
-        Currency currency = new Peso();
+        // Currency with Peso
+        //Currency currency = new Peso();
+        // Currency with Yen
+        Currency currency = new Yen();
         
         // Date Formater
         

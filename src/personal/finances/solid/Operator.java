@@ -29,9 +29,9 @@ public class Operator {
         String frequent = this.getCommonString(purchases);
         
         calculatedInfo.put("today", today.toString());
-        calculatedInfo.put("min", "" + min);
-        calculatedInfo.put("max", "" + max);
-        calculatedInfo.put("avg", "" + avg);
+        calculatedInfo.put("min", "" + currencyFormat.getAmount(min));
+        calculatedInfo.put("max", "" + currencyFormat.getAmount(max));
+        calculatedInfo.put("avg", "" + currencyFormat.getAmount(avg));
         calculatedInfo.put("frequent", frequent);
         
         return Collections.unmodifiableMap(calculatedInfo);
