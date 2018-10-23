@@ -4,14 +4,10 @@ package personal.finances.solid;
  *
  * @author Zegerd
  */
-public class Peso extends Currency {
+public class Peso implements Currency {
 
-    public Peso() {
-        super();
-    }
-    
     @Override
-    public String getAmount() {
-       return "$" + this.amount;
+    public String getAmount(float amount) {
+       return "$" + amount;
     }
 }

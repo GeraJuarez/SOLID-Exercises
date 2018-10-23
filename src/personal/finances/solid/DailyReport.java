@@ -15,54 +15,67 @@ public class DailyReport implements Report {
 	private float sum;
 	private String commonPayee;
 
-	public Report(String date, int size){
-		this.date = date;
-		this.payees = new String[size];
-		this.amounts = new float[size];
-		this.capacity = size;
+	public DailyReport(String date, int size){
+            this.date = date;
+            this.payees = new String[size];
+            this.amounts = new float[size];
+            this.capacity = size;
 
-		this.min = null;
-		this.max = null;
-		this.sum = 0;
-		this.commonPayee = null;
+            this.min = Float.MAX_VALUE;
+            this.max = 0;
+            this.sum = 0;
+            this.commonPayee = null;
 	}
 
-	public Date getDate(){
+        @Override
+	public String getDate(){
 		return this.date;
 	}
+        @Override
 	public String[] getPayees(){
 		return this.payees;
 	}
+        @Override
 	public float[] getAmounts(){
 		return this.amounts;
 	}
 
 	public void addPayment(String payee, float amount){
-		if(capacity>0){
-			this.payees[this.payees.lenght - capacity] = payee;
-			this.amount[this.amount.lenght - capacity] = amount;
-			if(this.min == null || amount < this.min){
-				this.min = amount;
-			}
-			if(this.max == null || amount > this.max){
-				this.max = amount;
-			}
-			this.sum += amount;
-			//TODO CALCULATE THE COMMON
-			capacity -= 1;
-		}
+            if (capacity > 0) {
+                this.payees[this.payees.length - capacity] = payee;
+                this.amounts[this.amounts.length - capacity] = amount;
+                if (amount < this.min){
+                    this.min = amount;
+                }
+                if (amount > this.max){
+                    this.max = amount;
+                }
+                this.sum += amount;
+                
+                // TODO: CALCULATE THE COMMON
+                capacity -= 1;
+            }
 	}	
 
+        @Override
 	public float getMin(){
-		return this.min;
+            return this.min;
 	}
+        @Override
 	public float getMax(){
-		return this.max;
+            return this.max;
 	}
+        @Override
 	public float getAvg(){
-		return this.sum/this.amounts.lenght;
+            return this.sum / this.amounts.length;
 	}
+        @Override
 	public String getFrequentPayee(){
-		return this.commonPayee;
+            return this.commonPayee;
 	}
+
+    @Override
+    public String getReport() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

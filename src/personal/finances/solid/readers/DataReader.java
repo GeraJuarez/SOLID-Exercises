@@ -1,4 +1,4 @@
-package personal.finances.solid;
+package personal.finances.solid.readers;
 
 /**
  *

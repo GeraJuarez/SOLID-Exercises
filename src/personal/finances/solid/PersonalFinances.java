@@ -1,5 +1,6 @@
 package personal.finances.solid;
 
+import personal.finances.solid.readers.DataReader;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -10,6 +11,8 @@ import java.util.Map;
  * @author Zegerd
  */
 public class PersonalFinances {
+    private Report report;
+    
     private int todayPurchases;
     private String[] payees;
     private float[] amounts;
@@ -23,6 +26,8 @@ public class PersonalFinances {
     Date today;
     
     public PersonalFinances(){
+        //this.report = report;
+        
         this.todayPurchases = 0;
         
         payeesCount = new HashMap<>();
@@ -71,19 +76,13 @@ public class PersonalFinances {
         }
     }
     
-    public void printData(Currency c) {
-        System.out.println("Purchases of " + today);
+    public void printData(Currency c, DataExporter de) {
         
-        c.setAmount(min);      
-        System.out.println("Min: " + c.getAmount());
-        
-        c.setAmount(max);
-        System.out.println("Max: " + c.getAmount());
-        
-        c.setAmount(avg);
-        System.out.println("Avg: " + c.getAmount());
-        
-        System.out.println("Frequent Payee: " + frequentPayee);
+        de.exportData("Purchases of " + today);
+        de.exportData("Min: " + c.getAmount(min));
+        de.exportData("Max: " + c.getAmount(max));
+        de.exportData("Avg: " + c.getAmount(avg));
+        de.exportData("Frequent Payee: " + frequentPayee);            
     }
     
 }

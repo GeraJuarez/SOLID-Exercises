@@ -1,11 +1,9 @@
 package personal.finances.solid;
 
-/**
- *
- * @author Zegerd
- */
-public class ConsoleReportPrinter implements DataExporter {
-    public int exportData(String data){
+public class ConsolePrinter implements DataExporter {
+    
+    @Override
+    public void exportData(String data){
     	System.out.println(data);
     }
 }

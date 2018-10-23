@@ -1,5 +1,6 @@
-package personal.finances.solid;
+package personal.finances.solid.readers;
 
+import personal.finances.solid.readers.DataReader;
 import java.util.Scanner;
 
 /**
