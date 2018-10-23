@@ -10,16 +10,16 @@ package personal.finances.solid;
  * @author JOSECARLOS
  */
 public class Purchase {
-    private String store;
+    private String payee;
     private float amount;
     
     public Purchase(String s, float a){
-        this.store = s;
+        this.payee = s;
         this.amount = a;
     }
     
-    public String getStore(){
-        return this.store;
+    public String getPayee(){
+        return this.payee;
     }
     
     public float getAmout(){

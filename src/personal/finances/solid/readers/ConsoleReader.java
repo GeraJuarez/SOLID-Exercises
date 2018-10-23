@@ -1,6 +1,5 @@
 package personal.finances.solid.readers;
 
-import personal.finances.solid.readers.DataReader;
 import java.util.Scanner;
 
 /**
@@ -8,7 +7,7 @@ import java.util.Scanner;
  * @author Zegerd
  */
 public class ConsoleReader implements DataReader {
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public ConsoleReader() {
         this.scanner = new Scanner(System.in);

@@ -1,13 +1,12 @@
 package personal.finances.solid;
 
+import java.util.Map;
+
 /**
  *
  * @author Zegerd
  */
 public interface Report {
-	public String getDate();
-	public String[] getPayees();
-	public float[] getAmounts();
-
-        public String getReport();
+        public String getReport();        
+        public void feedInfo(Map<String, String> map);
 }

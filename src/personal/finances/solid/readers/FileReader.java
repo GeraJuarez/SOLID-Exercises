@@ -1,6 +1,5 @@
 package personal.finances.solid.readers;
 
-import personal.finances.solid.readers.DataReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

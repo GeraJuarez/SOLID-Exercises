@@ -3,8 +3,6 @@ package personal.finances.solid;
 import personal.finances.solid.readers.DataReader;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -14,47 +12,54 @@ public class PersonalFinances {
     private Report report;
     private DataReader dr;
     private DataExporter de;
-    private Currency currency;
+    private Currency currency;    
+    private Operator operator;
     
-    private int todayPurchases;
-    private String[] payees;
-    private float[] amounts;
+    private Purchase[] purchases;
     
-    public PersonalFinances(DataReader dr, DataExporter de, Currency c){
+    public PersonalFinances(DataReader dr, DataExporter de, Report r, Operator op, Currency c){
         this.dr = dr;
-        this.de = de;
-        this.currency = c;        
+        this.de = de;         
+        this.report = r;
+        this.operator = op;
+        this.currency = c;
     }
     
     public void start() {
         System.out.println("reading...");
         this.readData();
+        
         System.out.println("calculating...");
         this.calculateInformation();
+        
         System.out.println("exporting...");
         this.printData();
+        
         System.out.println("Done");
     }
     
-    private void readData() {
-        this.todayPurchases = dr.readIntData();
+    private void readData() {       
+        int todayPurchases = dr.readIntData();
+        this.purchases = new Purchase[todayPurchases];         
         
-        this.payees = new String[todayPurchases];
-        this.amounts = new float[todayPurchases];
-        
-        for (int i = 0; i < this.todayPurchases; i++) {
-            this.payees[i] = dr.readStringData();
-            this.amounts[i] = dr.readFloatData();
-        }
-        this.report = new DailyReport(this.payees, this.amounts);
+        for (int i = 0; i < todayPurchases; i++) {
+            String newPayee = dr.readStringData();
+            float newAmount = dr.readFloatData();
+            purchases[i] = new Purchase(newPayee, newAmount);            
+        }        
     }
     
     private void calculateInformation() {
-        //Operator operator = new Operator();
+        Date today = Calendar.getInstance().getTime();
+        this.report.feedInfo(this.operator.calculateData(purchases));
+        
+        // send purchase Obj and the formater to calculator and return a dict
+        // send dict to reporter
         
     }
     
     private void printData() {
+        // reporter only prinst specified things of the dict
         de.exportData(this.report.getReport());           
     }
     

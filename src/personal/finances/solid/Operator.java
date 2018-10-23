@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package personal.finances.solid;
 
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,51 +11,76 @@ import java.util.Map;
  * @author JOSECARLOS
  */
 public class Operator {
-    public float getMin(float[] array){
-        float min = array[0];
+    
+    public Map<String, String> calculatedInfo;
+
+    public Operator() {
+        calculatedInfo = new HashMap<>();
+    }        
+    
+    public Map<String, String> calculateData(Purchase[] purchases) {
+        Date today = Calendar.getInstance().getTime();
+        
+        float min = this.getMin(purchases);
+        float max = this.getMax(purchases);
+        float avg = this.getAvg(purchases);
+        String frequent = this.getCommonString(purchases);
+        
+        calculatedInfo.put("today", today.toString());
+        calculatedInfo.put("min", "" + min);
+        calculatedInfo.put("max", "" + max);
+        calculatedInfo.put("avg", "" + avg);
+        calculatedInfo.put("frequent", frequent);
+        
+        return Collections.unmodifiableMap(calculatedInfo);
+    }
+    
+    private float getMin(Purchase[] array){
+        float min = array[0].getAmout();
         for(int i = 1; i < array.length; i++){
-            if(array[i] < min){
-                min = array[i];
+            if(array[i].getAmout() < min){
+                min = array[i].getAmout();
             }
         }
         return min;
     }
     
-    public float getMax(float[] array){
-        float max = array[0];
+    private float getMax(Purchase[] array){
+        float max = array[0].getAmout();
         for(int i = 1; i < array.length; i++){
-            if(array[i] > max){
-                max = array[i];
+            if(array[i].getAmout() > max){
+                max = array[i].getAmout();
             }
         }
         return max;
     }
     
-    public float getAvg (float[] array){
+    private float getAvg (Purchase[] array){
         float count = 0;
         for(int i = 0; i < array.length; i++){
-            count += array[i];
+            count += array[i].getAmout();
         }
-        return count/array.length;
+        return count / array.length;
     }
     
-    public String getCommonString(String[] array){
+    private String getCommonString(Purchase[] array){
         Map<String, Integer> arrayCount = new HashMap<>();
         int max = 0;
-        String maxString = array[0];
-        for(int i = 0; i < array.length; i++){
-            int appearances = arrayCount.getOrDefault(array[i], 0);
-            if(appearances > 0){
-                arrayCount.put(array[i], appearances + 1);
+        String maxString = array[0].getPayee();
+        
+        for (int i = 0; i < array.length; i++){
+            int appearances = arrayCount.getOrDefault(array[i].getPayee(), 0);
+            if (appearances > 0){
+                arrayCount.put(array[i].getPayee(), appearances + 1);
                 if(appearances + 1 > max){
                     max = appearances + 1;
-                    maxString = array[i];
+                    maxString = array[i].getPayee();
                 }
-            }else{
-                arrayCount.put(array[i], 1);
-                if(max == 0){
+            } else {
+                arrayCount.put(array[i].getPayee(), 1);
+                if (max == 0){
                     max = 1;
-                    maxString = array[i];
+                    maxString = array[i].getPayee();
                 }
             }
         }
