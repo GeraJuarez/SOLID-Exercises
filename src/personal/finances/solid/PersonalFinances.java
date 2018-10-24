@@ -1,5 +1,6 @@
 package personal.finances.solid;
 
+import DateFormats.DateFormat;
 import personal.finances.solid.CurrencyFormats.Currency;
 import personal.finances.solid.Reports.Report;
 import personal.finances.solid.Exporters.DataExporter;
@@ -14,17 +15,17 @@ public class PersonalFinances {
     private final Report report;
     private final DataReader dr;
     private final DataExporter de;
-    private final Currency currency;    
-    private final Operator operator;
+    private final Currency currency;
+    private final DateFormat dateformat;
     
     private Purchase[] purchases;
     
-    public PersonalFinances(DataReader dr, DataExporter de, Report r, Operator op, Currency c){
+    public PersonalFinances(DataReader dr, DataExporter de, Report r, Currency c, DateFormat df){
         this.dr = dr;
         this.de = de;         
         this.report = r;
-        this.operator = op;
         this.currency = c;
+        this.dateformat = df;
     }
     
     public void start() {
@@ -52,18 +53,12 @@ public class PersonalFinances {
     }
     
     private void calculateInformation() {
-        // dudas: 
-        // esta bien la forma de leer los datos?
-        // esta forma de calculate esta bien o hay una manera mejor?
-        // como manejamos las mismas constantes que se usan en muchas clases?
-        
-        // TODO: implement date formatter interface
-        // add it ro calculateData params and use it
-        this.report.feedInfo(this.operator.calculateData(purchases, currency));        
+        Operator op = new Operator(purchases);
+        this.report.setOperator(op);
     }
     
     private void printData() {
-        de.exportData(this.report.getReport());           
+        de.exportData(this.report.getReport(this.currency, this.dateformat));           
     }
     
 }

@@ -1,5 +1,7 @@
 package personal.finances.solid;
 
+import DateFormats.DateFormat;
+import DateFormats.DefaultDate;
 import personal.finances.solid.CurrencyFormats.Peso;
 import personal.finances.solid.CurrencyFormats.Currency;
 import personal.finances.solid.CurrencyFormats.Yen;
@@ -31,8 +33,8 @@ public class PersonalFinancesSOLID {
         // Use a Report
         Report report = new DailyReport();
         
-        // Operations
-        Operator op = new Operator();
+        // Use a date format
+        DateFormat df = new DefaultDate();
         
         // Currency with Peso
         //Currency currency = new Peso();
@@ -46,8 +48,8 @@ public class PersonalFinancesSOLID {
                 dr, 
                 de, 
                 report,
-                op,
-                currency
+                currency,
+                df
         );
         pf.start();
     }
