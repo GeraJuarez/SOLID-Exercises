@@ -2,6 +2,7 @@ package personal.finances.solid;
 
 import DateFormats.DateFormat;
 import DateFormats.DefaultDate;
+import DateFormats.SlashedDate;
 import personal.finances.solid.CurrencyFormats.Peso;
 import personal.finances.solid.CurrencyFormats.Currency;
 import personal.finances.solid.CurrencyFormats.Yen;
@@ -34,15 +35,12 @@ public class PersonalFinancesSOLID {
         Report report = new DailyReport();
         
         // Use a date format
-        DateFormat df = new DefaultDate();
+        DateFormat df = new SlashedDate();
         
         // Currency with Peso
         //Currency currency = new Peso();
         // Currency with Yen
-        Currency currency = new Yen();
-        
-        // Date Formater
-        
+        Currency currency = new Yen();        
         
         PersonalFinances pf = new PersonalFinances(
                 dr, 
